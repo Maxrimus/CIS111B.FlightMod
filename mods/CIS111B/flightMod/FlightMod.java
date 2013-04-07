@@ -39,7 +39,7 @@ public class FlightMod {
     private static final net.minecraft.item.Item primary = new GenericItem(708).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("primary");
     private static final net.minecraft.item.Item skin = new GenericItem(709).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("skin");
     private static final net.minecraft.item.Item tissue = new GenericItem(710).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("tissue");
-    private static final net.minecraft.item.Item revitalizer = new ItemRevitalizer(711).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setUnlocalizedName("revitalizer");
+    static final net.minecraft.item.Item revitalizer = new ItemRevitalizer(711).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setUnlocalizedName("revitalizer");
     private static final net.minecraft.item.Item wings = new Wings(712).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setUnlocalizedName("wings");
     // Says where the client and server 'proxy' code is loaded.
     @SidedProxy(clientSide = "mods.CIS111B.flightMod.client.ClientProxy", serverSide = "mods.CIS111B.flightMod.CommonProxy")
@@ -87,7 +87,11 @@ public class FlightMod {
             GameRegistry.addRecipe(new ItemStack(downy,8),"x x"," y ","x x",'x',featherstack,'y',woolstack);
             GameRegistry.addRecipe(new ItemStack(secondary,8),"x","x",'x',featherstack);
             GameRegistry.addRecipe(new ItemStack(primary,8),"x","x","x",'x',featherstack);
-            GameRegistry.addRecipe(new ItemStack(skin,4),"xyx","yzy","xyx",'x',rfleshstack,'y',leatherstack,'z',revitalizer);
+            for(int i = 0; i < revitalizer.getMaxDamage(); i++)
+            {
+            	ItemStack revitStack = new ItemStack(revitalizer,1,i);
+            	GameRegistry.addRecipe(new ItemStack(skin,4),"xyx","yzy","xyx",'x',rfleshstack,'y',leatherstack,'z',revitStack);
+            }
             GameRegistry.addRecipe(new ItemStack(tissue,2),"xxx","yzy","xxx",'x',seyestack,'y',porkstack,'z',waterstack);
             GameRegistry.addRecipe(new ItemStack(revitalizer),"xyx","wzw","xyx",'w',chickenstack,'x',porkstack,'y',beefstack,'z',enderstack);
             GameRegistry.addRecipe(new ItemStack(wings),"xyx","zzz","zzz",'x',wing,'y',airEssence,'z',avianDNA);
@@ -95,6 +99,6 @@ public class FlightMod {
     
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
-            // Stub Method
+    	GameRegistry.registerCraftingHandler(new CraftingHandler());
     }
 }
