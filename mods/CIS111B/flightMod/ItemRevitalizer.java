@@ -1,5 +1,6 @@
 package mods.CIS111B.flightMod;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 
 public class ItemRevitalizer extends Item {
@@ -8,5 +9,9 @@ public class ItemRevitalizer extends Item {
 		super(par1);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public void updateIcons(IconRegister icon) 
+	{ 
+		this.iconIndex = icon.registerIcon("CIS111B:" + this.getUnlocalizedName());
+	}
 }

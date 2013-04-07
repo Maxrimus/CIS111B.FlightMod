@@ -13,6 +13,6 @@ public class GenericItem extends Item {
 	@Override 
 	public void updateIcons(IconRegister icon) 
 	{ 
-		this.iconIndex = icon.registerIcon(this.getUnlocalizedName());
+		this.iconIndex = icon.registerIcon("CIS111B:" + this.getUnlocalizedName());
 	}
 }
