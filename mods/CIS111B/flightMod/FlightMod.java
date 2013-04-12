@@ -4,7 +4,10 @@ import mods.CIS111B.flightMod.GenericItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
+import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +25,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid="FlightMod", name="FlightMod", version="0.0.0")
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
@@ -29,6 +34,7 @@ public class FlightMod {
 	// The instance of your mod that Forge uses.
     @Instance("FlightMod")
     public static FlightMod instance;
+    //Declaration of all items
     private static final net.minecraft.item.Item avianDNA = new GenericItem(700).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("avianDNA");
     private static final net.minecraft.item.Item airEssence = new GenericItem(701).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("airEssence");
     private static final net.minecraft.item.Item wing = new GenericItem(702).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("wing");
@@ -41,7 +47,12 @@ public class FlightMod {
     private static final net.minecraft.item.Item skin = new GenericItem(709).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("skin");
     private static final net.minecraft.item.Item tissue = new GenericItem(710).setCreativeTab(CreativeTabs.tabMaterials).setMaxStackSize(64).setUnlocalizedName("tissue");
     static final net.minecraft.item.Item revitalizer = new ItemRevitalizer(711).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setUnlocalizedName("revitalizer");
-    private static final net.minecraft.item.Item wings = new Wings(712).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setUnlocalizedName("wings");
+    private static EnumArmorMaterial WingMaterial = net.minecraftforge.common.EnumHelper.addArmorMaterial("wing", 0, new int[]{0,0,0,0} ,0);
+    static final net.minecraft.item.Item wings = new Wings(712, WingMaterial, 0, 1).setCreativeTab(CreativeTabs.tabMisc).setMaxStackSize(1).setUnlocalizedName("wings");
+    static final ItemStack wingstack = new ItemStack(wings,1);
+    /**PlayerCapabilities capa = new PlayerCapabilities();
+    EntityPlayer p = new EntityPlayer(this.World);
+    InventoryPlayer inv = new InventoryPlayer(this.EntityPlayer);*/
     // Says where the client and server 'proxy' code is loaded.
     @SidedProxy(clientSide = "mods.CIS111B.flightMod.client.ClientProxy", serverSide = "mods.CIS111B.flightMod.CommonProxy")
     public static CommonProxy proxy;
@@ -54,6 +65,9 @@ public class FlightMod {
     @Init
     public void load(FMLInitializationEvent event) {
             proxy.registerRenderers();
+            TickRegistry.registerTickHandler(new ServerTickHandler(), Side.CLIENT);
+            TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+            //registration of all item names in Forge dictionary
             LanguageRegistry.addName(avianDNA,"Avian DNA");
             LanguageRegistry.addName(airEssence,"Air Essence");
             LanguageRegistry.addName(wing,"Wing");
@@ -67,7 +81,9 @@ public class FlightMod {
             LanguageRegistry.addName(tissue,"Tissue");
             LanguageRegistry.addName(revitalizer,"Revitalizer");
             LanguageRegistry.addName(wings,"Wings");
+            //Adding of smelting recipes
             GameRegistry.addSmelting(288, new ItemStack(avianDNA,1), 0.1f);
+            //Itemstacks to be used in recipes
             ItemStack featherstack = new ItemStack(288,1,0);
             ItemStack diamondstack = new ItemStack(264,1,0);
             ItemStack bonestack = new ItemStack(352,1,0);
@@ -80,6 +96,7 @@ public class FlightMod {
             ItemStack beefstack = new ItemStack(363,1,0);
             ItemStack chickenstack = new ItemStack(365,1,0);
             ItemStack enderstack = new ItemStack(368,1,0);
+            //Addition of crafting recipes
             GameRegistry.addRecipe(new ItemStack(airEssence),"xxx","xyx","xxx",'x',featherstack,'y',diamondstack);
             GameRegistry.addRecipe(new ItemStack(wing),"abc","ded","fgh",'a',carpo,'b',ulna,'c',humerus,'d',skin,'e',tissue,'f',primary,'g',secondary,'h',downy);
             GameRegistry.addRecipe(new ItemStack(carpo,2),"xyx",'x',bonestack,'y',avianDNA);
@@ -88,6 +105,7 @@ public class FlightMod {
             GameRegistry.addRecipe(new ItemStack(downy,8),"x x"," y ","x x",'x',featherstack,'y',woolstack);
             GameRegistry.addRecipe(new ItemStack(secondary,8),"x","x",'x',featherstack);
             GameRegistry.addRecipe(new ItemStack(primary,8),"x","x","x",'x',featherstack);
+            //Adds recipes for all damage values of revitalizer item
             for(int i = 0; i < revitalizer.getMaxDamage(); i++)
             {
             	ItemStack revitStack = new ItemStack(revitalizer,1,i);
@@ -101,5 +119,13 @@ public class FlightMod {
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
     	GameRegistry.registerCraftingHandler(new CraftingHandler());
+    	/*EntityPlayer p = EntityPlayer();
+    	for (int i1 = 0; i1 < 4; i1++)
+        {
+    		if (p.inventory.armorItemInSlot(i1) != null)
+    		{
+    			ItemStack LivingArmor = p.inventory.armorItemInSlot(i1);
+    		}
+        }*/
     }
 }
