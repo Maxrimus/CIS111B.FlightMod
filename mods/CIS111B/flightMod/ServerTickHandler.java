@@ -21,7 +21,7 @@ public class ServerTickHandler implements ITickHandler {
 	    if (player.inventory.armorInventory[2] != null)
 	    {
 	      int id = player.inventory.armorInventory[2].itemID;
-	      if (id == 54)
+	      if (FlightMod.isPairOfWings(id))
 	      {
 	        player.capabilities.allowFlying = true;
 	      }
@@ -52,8 +52,7 @@ public class ServerTickHandler implements ITickHandler {
 
 	@Override
 	public EnumSet<TickType> ticks() {
-		// TODO Auto-generated method stub
-		return null;
+		return EnumSet.of(TickType.PLAYER);
 	}
 
 	@Override

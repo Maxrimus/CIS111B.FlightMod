@@ -119,13 +119,8 @@ public class FlightMod {
     @PostInit
     public void postInit(FMLPostInitializationEvent event) {
     	GameRegistry.registerCraftingHandler(new CraftingHandler());
-    	/*EntityPlayer p = EntityPlayer();
-    	for (int i1 = 0; i1 < 4; i1++)
-        {
-    		if (p.inventory.armorItemInSlot(i1) != null)
-    		{
-    			ItemStack LivingArmor = p.inventory.armorItemInSlot(i1);
-    		}
-        }*/
     }
+    public static boolean isPairOfWings(int id) {
+		return (id == wings.itemID);
+	}
 }
