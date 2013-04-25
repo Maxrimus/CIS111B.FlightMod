@@ -1,0 +1,22 @@
+[
+{
+  "modid": "FlightMod",
+  "name": "PilotWings: A Flight Mod",
+  "description": "The flying mod for our CIS-111B final project!",
+  "version": "0.1.0",
+  "url": "https://github.com/Maxrimus/CIS111B.FlightMod",
+  "updateUrl": "",
+  "authorList": [
+    "Joe Tursi - Maxrimus"
+    "Ian Speers"
+    "Tim Smyth"
+  ],
+  "credits": "Joe, Ian, and Tim for all of their hard work. Dr Martin for her support and guidance!",
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
