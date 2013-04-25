@@ -141,7 +141,26 @@ public class FlightMod {
         GameRegistry.addRecipe(new ItemStack(tissue,2),"xxx","yzy","xxx",'x',seyestack,'y',porkstack,'z',waterstack);
         GameRegistry.addRecipe(new ItemStack(revitalizer),"xyx","wzw","xyx",'w',chickenstack,'x',porkstack,'y',beefstack,'z',enderstack);
         GameRegistry.addRecipe(new ItemStack(wings),"xyx","zzz","zzz",'x',wing,'y',airEssence,'z',avianDNA);
-        
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_leather_chest, 1), new ItemStack(299,1,0), new ItemStack(wings));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_chain_chest, 1), new ItemStack(303,1,0), new ItemStack(wings));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_iron_chest, 1), new ItemStack(307,1,0), new ItemStack(wings));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_gold_chest, 1), new ItemStack(315,1,0), new ItemStack(wings));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_diamond_chest, 1), new ItemStack(311,1,0), new ItemStack(wings));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_leather_helmet), new ItemStack(298,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_chain_helmet), new ItemStack(302,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_iron_helmet), new ItemStack(306,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_diamond_helmet), new ItemStack(310,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_gold_helmet), new ItemStack(314,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_leather_legs), new ItemStack(300,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_chain_legs), new ItemStack(304,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_iron_legs), new ItemStack(308,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_diamond_legs), new ItemStack(312,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_gold_legs), new ItemStack(316,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_leather_boots), new ItemStack(301,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_chain_boots), new ItemStack(305,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_iron_boots), new ItemStack(309,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_diamond_boots), new ItemStack(313,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
+        GameRegistry.addShapelessRecipe(new ItemStack(winged_gold_boots), new ItemStack(317,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
 	}
 
 	private void addNames() {
