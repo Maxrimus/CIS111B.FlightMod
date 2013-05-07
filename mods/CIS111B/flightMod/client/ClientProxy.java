@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import mods.CIS111B.flightMod.CommonProxy;
 import mods.CIS111B.flightMod.ServerTickHandler;
 import net.minecraftforge.client.MinecraftForgeClient;
-
+//Deals with client-side computations
 public class ClientProxy extends CommonProxy {
         
         @Override

@@ -90,23 +90,33 @@ public class FlightMod {
     @SidedProxy(clientSide = "mods.CIS111B.flightMod.client.ClientProxy", serverSide = "mods.CIS111B.flightMod.CommonProxy")
     public static CommonProxy proxy;
     
+    /*
+     * initialized before the game is loaded
+     */
     @PreInit
     public void preInit(FMLPreInitializationEvent event) {
-    	 addNames();
-         addRecipes();
-         addTickers(); 
+    	 addNames();//registers item names in forge dictionary
+         addRecipes();//registers recipes in forge directory
+         addTickers(); //registers tick handlers for server and client
     }
     
+    //stuff to load when the game has loaded
     @Init
     public void load(FMLInitializationEvent event) {
             proxy.registerRenderers();  
     }
     
+    /*
+     * registers tickhandlers
+     */
     private void addTickers() {
     	TickRegistry.registerTickHandler(new ServerTickHandler(), Side.CLIENT);
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);		
 	}
 
+    /*
+     * registers recipes
+     */
 	private void addRecipes() {
 		//Adding of smelting recipes
         GameRegistry.addSmelting(288, new ItemStack(avianDNA,1), 0.1f);
@@ -163,6 +173,9 @@ public class FlightMod {
         GameRegistry.addShapelessRecipe(new ItemStack(winged_gold_boots), new ItemStack(317,1,0), new ItemStack(avianDNA), new ItemStack(avianDNA), new ItemStack(avianDNA));
 	}
 
+	/*
+	 * registers names of items
+	 */
 	private void addNames() {
 		//registration of all item names in Forge dictionary
         LanguageRegistry.addName(avianDNA,"Avian DNA");
@@ -205,22 +218,38 @@ public class FlightMod {
      LanguageRegistry.addName(winged_diamond_boots, "Winged Diamond Boots");
 	}
 
+	/*
+	 * stuff to be done after the game has started
+	 */
 	@PostInit
     public void postInit(FMLPostInitializationEvent event) {
     	GameRegistry.registerCraftingHandler(new CraftingHandler());
     }
+	
+	/*
+	 * returns true if chestpiece is mod chestpiece
+	 */
     public static boolean isPairOfWings(int id) {
 		return (id == wings.itemID || id == winged_leather_chest.itemID || id == winged_chain_chest.itemID || id == winged_iron_chest.itemID || id == winged_gold_chest.itemID || id == winged_diamond_chest.itemID);
 	}
 
+    /*
+	 * returns true if boots are mod boots
+	 */
 	public static boolean isPairOfBoots(int id) {
 		return(id == winged_leather_boots.itemID || id == winged_chain_boots.itemID || id == winged_iron_boots.itemID || id == winged_diamond_boots.itemID || id == winged_gold_boots.itemID);
 	}
 
+	/*
+	 * returns true if pants are mod pants
+	 */
 	public static boolean isPairOfPants(int id) {
 		return(id == winged_leather_legs.itemID || id == winged_chain_legs.itemID || id == winged_iron_legs.itemID || id == winged_diamond_legs.itemID || id == winged_gold_legs.itemID);
 	}
 
+	/*
+	 * returns true if helm is mod helm
+	 */
 	public static boolean isHelmet(int id) {
 		return(id == winged_leather_helmet.itemID || id == winged_chain_helmet.itemID || id == winged_iron_helmet.itemID || id == winged_diamond_helmet.itemID || id == winged_gold_helmet.itemID);
 	}
