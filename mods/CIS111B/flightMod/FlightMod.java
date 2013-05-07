@@ -212,4 +212,16 @@ public class FlightMod {
     public static boolean isPairOfWings(int id) {
 		return (id == wings.itemID || id == winged_leather_chest.itemID || id == winged_chain_chest.itemID || id == winged_iron_chest.itemID || id == winged_gold_chest.itemID || id == winged_diamond_chest.itemID);
 	}
+
+	public static boolean isPairOfBoots(int id) {
+		return(id == winged_leather_boots.itemID || id == winged_chain_boots.itemID || id == winged_iron_boots.itemID || id == winged_diamond_boots.itemID || id == winged_gold_boots.itemID);
+	}
+
+	public static boolean isPairOfPants(int id) {
+		return(id == winged_leather_legs.itemID || id == winged_chain_legs.itemID || id == winged_iron_legs.itemID || id == winged_diamond_legs.itemID || id == winged_gold_legs.itemID);
+	}
+
+	public static boolean isHelmet(int id) {
+		return(id == winged_leather_helmet.itemID || id == winged_chain_helmet.itemID || id == winged_iron_helmet.itemID || id == winged_diamond_helmet.itemID || id == winged_gold_helmet.itemID);
+	}
 }
